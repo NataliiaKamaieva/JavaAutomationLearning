@@ -1,0 +1,20 @@
+Test Case #001 - Green Card Calculation - Valid Scenarios
+
+Precondition:
+The Green Card Calculation page is accessible.
+
+Steps:
+1. Open the Green Card Calculation page.
+2. Select the type of vehicle.
+3. Select the territory.
+4. Select the period.
+5. Click on the "Calculate" button.
+
+Expected Result:
+1. The Green Card Calculation page is successfully loaded.
+2. The header displays the calculated result matching the selected parameters (type of vehicle, territory, period).
+3. The "Change Parameters" button is visible.
+4. The "Buy" button is visible
+
+Notes:
+Repeat the test with different combinations of valid parameters.
