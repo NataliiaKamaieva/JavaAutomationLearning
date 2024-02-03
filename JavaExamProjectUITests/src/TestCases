@@ -1,20 +1,111 @@
-Test Case #001 - Green Card Calculation - Valid Scenarios
+## Test Case #001 - Green Card Calculation - Valid Scenarios
 
-Precondition:
-The Green Card Calculation page is accessible.
-
-Steps:
-1. Open the Green Card Calculation page.
+**Steps:**
+1. Open the Green Card Calculation page [https://ukrposhta-greencard.ewa.ua/](https://ukrposhta-greencard.ewa.ua/).
 2. Select the type of vehicle.
 3. Select the territory.
 4. Select the period.
 5. Click on the "Calculate" button.
 
-Expected Result:
+**Expected Result:**
 1. The Green Card Calculation page is successfully loaded.
 2. The header displays the calculated result matching the selected parameters (type of vehicle, territory, period).
 3. The "Change Parameters" button is visible.
-4. The "Buy" button is visible
+4. The "Buy" button is visible.
 
-Notes:
-Repeat the test with different combinations of valid parameters.
+**Notes:**
+1. Repeat the test with different combinations of valid parameters.
+
+## Test Case #002 - Validation Errors on Green Card Page
+
+**Steps:**
+1. Open the Green Card Calculation page [https://ukrposhta-greencard.ewa.ua/](https://ukrposhta-greencard.ewa.ua/).
+
+**Test Scenario 1: Empty Territory and Period:**
+1. Set the territory input field to an empty value.
+2. Set the period input field to an empty value.
+3. Click on the "Calculate" button.
+
+**Expected Result:**
+1. The error messages for both empty territory and period display.
+2. Ensure the error messages match the expected results.
+
+**Test Scenario 2: Specific Territory with Empty Period:**
+1. Set a specific territory from the provided test data.
+2. Set the period input field to an empty value.
+3. Click on the "Calculate" button.
+
+**Expected Result:**
+1. The error message specifically for the empty period displays.
+2. Ensure the error message matches the expected results.
+
+**Test Scenario 3: Empty Territory with Specific Period:**
+1. Set the territory input field to an empty value.
+2. Set a specific period from the provided test data.
+3. Click on the "Calculate" button.
+
+**Expected Result:**
+1. The error message specifically for the empty territory displays.
+2. Ensure the error message matches the expected results.
+
+**Notes:**
+1. Expected messages for fields.
+- ERROR_MESSAGE_PERIOD = "Виберіть період покриття";
+- ERROR_MESSAGE_TERRITORY = "Виберіть територію покриття";
+
+## Test Case #003 - Domestic Delivery Cost Calculation for Package Type
+
+**Steps:**
+1. Open the Domestic Calculator page [https://calc.ukrposhta.ua/domestic-calculator](https://calc.ukrposhta.ua/domestic-calculator).
+2. Click the "Agree" button to accept the terms and conditions.
+3. Select the Origin and Destination city.
+4. Click on the "Shipment Package."
+5. Enter the weight of the package.
+6. Enter the maximum side length of the package.
+7. Enter the declared value for the package.
+8. Select all checkboxes for the Package type.
+9. Click on the "Calculate" button.
+
+**Expected Result:**
+1. Ensure that Origin and Destination cities are displayed correctly.
+2. Confirm that the "Ukrposhta Ekspres" service is visible and includes the link [https://www.ukrposhta.ua/ua/ekspres](https://www.ukrposhta.ua/ua/ekspres).
+3. Confirm that the "Ukrposhta Standart" service is visible and includes the link [https://www.ukrposhta.ua/ua/standart](https://www.ukrposhta.ua/ua/standart).
+4. Ensure that the "Ukrposhta Docs" service is not visible.
+
+**Notes:**
+1. Expected checkboxes:
+- Courier call
+- Delivery by courier
+- SMS about receipt
+- Recommended service notice
+- Return delivery of documents
+2. Repeat the test with different combinations of valid parameters.
+
+## Test Case #004 - Domestic Delivery Cost Calculation for Documents Type without additional service.
+
+**Steps:**
+1. Open the Domestic Calculator page [https://calc.ukrposhta.ua/domestic-calculator](https://calc.ukrposhta.ua/domestic-calculator).
+2. Click the "Agree" button to accept the terms and conditions.
+3. Select the Origin and Destination city.
+4. Click on the "Shipment Docs" button.
+5. Click on the "Calculate" button.
+
+**Expected Result:**
+1. Ensure that Origin and Destination cities are displayed correctly.
+2. Confirm that the "Ukrposhta Ekspres" service is not visible.
+3. Confirm that the "Ukrposhta Standart" service is not visible.
+4. Ensure that the "Ukrposhta Docs" service is visible.
+
+**Notes:**
+1. Repeat the test with different combinations of valid parameters.
+
+## Test Case #005 - Swap Button Functionality
+
+**Steps:**
+1. Open the Domestic Calculator page [https://calc.ukrposhta.ua/domestic-calculator](https://calc.ukrposhta.ua/domestic-calculator).
+2. Click on the "Agree" button to accept the terms and conditions.
+3. Select the Origin and Destination city.
+4. Click on the "Swap" button.
+
+**Expected Result:**
+1. Confirm that the "Swap" button has successfully interchanged the selected origin and destination countries.

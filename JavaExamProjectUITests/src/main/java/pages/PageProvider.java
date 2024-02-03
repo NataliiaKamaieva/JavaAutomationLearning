@@ -8,12 +8,10 @@ public class PageProvider {
         this.webDriver = webDriver;
     }
 
-    public InternationalCalculatorPage getInternationalCalculatorPage() {
-        return new InternationalCalculatorPage(webDriver);
-    }
-
     public GreenCardPage getGreenCardPage() {
         return new GreenCardPage(webDriver);
     }
-
+    public DomesticCalculatorPage getDomesticCalculatorPage() {
+        return new DomesticCalculatorPage(webDriver);
+    }
 }

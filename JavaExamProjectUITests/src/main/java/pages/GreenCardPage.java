@@ -1,18 +1,25 @@
 package pages;
 
+import io.qameta.allure.Step;
+import libs.Util;
+import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class GreenCardPage extends ParentPage {
+    public GreenCardPage(WebDriver webDriver) {
+        super(webDriver);
+    }
 
-    final String greenCardUrl = "https://ukrposhta-greencard.ewa.ua/";
-
-    @FindBy(xpath = "//div[@class='form-group__content']//ul[@class='select__list']//li[@class='select__option']")
-    private WebElement dropdownOption;
+    final String greenCardPageUrl = "https://ukrposhta-greencard.ewa.ua/";
 
     @FindBy(xpath = "//div[@class='form-group' and p[@class='form-group__header' and text()='Тип транспортного засобу']]")
     private WebElement dropdownTransportType;
@@ -30,9 +37,18 @@ public class GreenCardPage extends ParentPage {
     private WebElement buttonCalculate;
 
     @FindBy(xpath = "//div[@class='products-list-item__buy']/button[@class='button button_a']")
-    private WebElement buyButton;
+    private WebElement buttonBuy;
+
+    @FindBy(xpath = "//p[@class='form-group__error']")
+    private List<WebElement> listErrorsMessages;
 
     private String dropDownOptionLocator = ".//li[@role='option' and @class='select__option' and contains(text(), '%s')]";
+    private String listErrorsMessagesLocator = "//p[@class='form-group__error']";
+
+    @Step
+    public void openGreenCardPage() {
+        openPage(greenCardPageUrl);
+    }
 
     private String getElementName(WebElement webElement) {
         try {
@@ -42,6 +58,7 @@ public class GreenCardPage extends ParentPage {
         }
     }
 
+    @Step
     public void selectDropdownOption(WebElement dropdown, String optionText) {
         try {
             dropdown.click();
@@ -54,28 +71,25 @@ public class GreenCardPage extends ParentPage {
         }
     }
 
+    @Step
     public GreenCardPage selectTransportType(String optionText) {
         selectDropdownOption(dropdownTransportType, optionText);
         return this;
     }
 
+    @Step
     public GreenCardPage selectTerritory(String optionText) {
         selectDropdownOption(dropdownTerritory, optionText);
         return this;
     }
 
+    @Step
     public void selectPeriod(String optionText) {
         selectDropdownOption(dropdownPeriod, optionText);
     }
 
-    public GreenCardPage(WebDriver webDriver) {
-        super(webDriver);
-    }
 
-    public void openGreenCardPage() {
-        openPage(greenCardUrl);
-    }
-
+    @Step
     public GreenCardPage clickOnButtonCalculate() {
         clickOnElement(buttonCalculate);
         return this;
@@ -85,6 +99,7 @@ public class GreenCardPage extends ParentPage {
         return String.format("//h2/span[contains(text(), '%s')]", expectedText);
     }
 
+    @Step
     public void checkHeaderResultOfCalculation(String typeOfVehicle, String territory, String period) {
         String expectedText = String.format("%s / %s / %s", typeOfVehicle, territory, period);
 
@@ -95,13 +110,38 @@ public class GreenCardPage extends ParentPage {
         Assert.assertEquals("Header result text does not match", expectedText, headerResultOfCalculation.getText());
     }
 
+    @Step
     public GreenCardPage isButtonChangeParametersVisible() {
         Assert.assertTrue("Button - Change Parameters is not visible", isElementDisplayed(buttonChangeParameters));
         return this;
     }
-
+    @Step
     public GreenCardPage isBuyButtonVisible() {
-        Assert.assertTrue("Button - Buy is not visible", isElementDisplayed(buyButton));
+        Assert.assertTrue("Button - Buy is not visible", isElementDisplayed(buttonBuy));
+        return this;
+    }
+    @Step
+    public GreenCardPage checkErrorsMessages(String message) {
+        String[] expectedErrors = message.split(";");
+
+        webDriverWaitLong.until(ExpectedConditions.numberOfElementsToBe(
+                By.xpath(listErrorsMessagesLocator), expectedErrors.length));
+
+        Util.waitABit(1);
+        Assert.assertEquals("Number of messages", expectedErrors.length, listErrorsMessages.size());
+
+        ArrayList<String> actualErrors = new ArrayList<>();
+        for (WebElement element : listErrorsMessages) {
+            actualErrors.add(element.getText());
+        }
+
+        SoftAssertions softAssertions = new SoftAssertions();
+        for (int i = 0; i < expectedErrors.length; i++) {
+            softAssertions.assertThat(expectedErrors[i])
+                    .as("Error " + i)
+                    .isIn(actualErrors);
+        }
+        softAssertions.assertAll();
         return this;
     }
 }
