@@ -1,7 +1,6 @@
 package pages;
 
 import io.qameta.allure.Step;
-import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -127,7 +126,7 @@ public class GreenCardPage extends ParentPage {
         webDriverWaitLong.until(ExpectedConditions.numberOfElementsToBe(
                 By.xpath(listErrorsMessagesLocator), expectedErrors.length));
 
-        Util.waitABit(1);
+        waitABit(1);
         Assert.assertEquals("Number of messages", expectedErrors.length, listErrorsMessages.size());
 
         ArrayList<String> actualErrors = new ArrayList<>();
