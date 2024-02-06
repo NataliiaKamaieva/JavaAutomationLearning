@@ -23,8 +23,8 @@ public class GreenCardCalculatorTests extends BaseTest {
         pageProvider.getGreenCardPage().selectPeriod(period);
         pageProvider.getGreenCardPage().clickOnButtonCalculate();
         pageProvider.getGreenCardPage().checkHeaderResultOfCalculation(typeOfVehicle, territory, period);
-        pageProvider.getGreenCardPage().isButtonChangeParametersVisible();
-        pageProvider.getGreenCardPage().isBuyButtonVisible();
+        pageProvider.getGreenCardPage().checkIsButtonChangeParametersVisible();
+        pageProvider.getGreenCardPage().checkIsBuyButtonVisible();
     }
 
     public Object[][] parametersForGreenCardCalculationTest() {

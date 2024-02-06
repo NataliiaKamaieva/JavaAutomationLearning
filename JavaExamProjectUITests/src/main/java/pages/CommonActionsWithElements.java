@@ -50,6 +50,14 @@ public class CommonActionsWithElements {
         }
     }
 
+    public static void waitABit(Integer second){
+        try {
+            Thread.sleep(second * 1000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
     protected void enterTextIntoInput(WebElement input, String text) {
         try {
             input.clear();
@@ -82,6 +90,7 @@ public class CommonActionsWithElements {
 
     protected void clickOnElement(String locator) {
         try {
+            webDriverWaitLong.until(ExpectedConditions.elementToBeClickable(By.xpath(locator)));
             clickOnElement(webDriver.findElement(By.xpath(locator)));
         } catch (Exception e) {
             logger.error("Can not work with locator. " + e.getMessage());
@@ -109,7 +118,7 @@ public class CommonActionsWithElements {
         }
     }
 
-    public boolean checkIsElementNotVisible(WebElement webElement, String elementName) {
+    public boolean isElementNotVisible(WebElement webElement, String elementName) {
         try {
             boolean state = !webElement.isDisplayed();
             logger.info(elementName + " is displayed -> " + state);

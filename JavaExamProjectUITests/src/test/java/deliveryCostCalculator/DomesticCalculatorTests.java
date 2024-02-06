@@ -31,9 +31,9 @@ public class DomesticCalculatorTests extends BaseTest {
         pageProvider.getDomesticCalculatorPage().enterDeclaredValue(declaredValue);
         pageProvider.getDomesticCalculatorPage().selectAllCheckboxesForTypeGoToPackage();
         pageProvider.getDomesticCalculatorPage().clickOnCalculateButton();
-        pageProvider.getDomesticCalculatorPage().isServiceUkrposhtaEkspresIsVisible();
-        pageProvider.getDomesticCalculatorPage().isServiceUkrposhtaStandartIsVisible();
-        pageProvider.getDomesticCalculatorPage().isServiceUkrposhtaDocsNotVisible();
+        pageProvider.getDomesticCalculatorPage().checkIsServiceUkrposhtaEkspresIsVisible();
+        pageProvider.getDomesticCalculatorPage().checkIsServiceUkrposhtaStandartIsVisible();
+        pageProvider.getDomesticCalculatorPage().checkIsServiceUkrposhtaDocsNotVisible();
     }
 
     public Object[][] paramsDomesticCalculationGoToPackageWithAllValidParametersTest() {
@@ -57,9 +57,9 @@ public class DomesticCalculatorTests extends BaseTest {
         pageProvider.getDomesticCalculatorPage().selectCityTo(inputCountryTo, countryTo);
         pageProvider.getDomesticCalculatorPage().clickOnButtonShipmentDocs();
         pageProvider.getDomesticCalculatorPage().clickOnCalculateButton();
-        pageProvider.getDomesticCalculatorPage().isServiceUkrposhtaDocsIsVisible();
-        pageProvider.getDomesticCalculatorPage().isServiceUkrposhtaStandartNotVisible();
-        pageProvider.getDomesticCalculatorPage().isServiceUkrposhtaEkspresNotVisible();
+        pageProvider.getDomesticCalculatorPage().checkIsServiceUkrposhtaDocsIsVisible();
+        pageProvider.getDomesticCalculatorPage().checkIsServiceUkrposhtaStandartNotVisible();
+        pageProvider.getDomesticCalculatorPage().checkIsServiceUkrposhtaEkspresNotVisible();
     }
 
     public Object[][] parametersForDomesticCalculationGoToDocsWithoutAdditionalServiceTest() {
@@ -78,7 +78,7 @@ public class DomesticCalculatorTests extends BaseTest {
         pageProvider.getDomesticCalculatorPage().selectCityFrom("Чернігів", "Чернігів");
         pageProvider.getDomesticCalculatorPage().selectCityTo("Київ", "Київ");
         pageProvider.getDomesticCalculatorPage().clickOnButtonSwap();
-        pageProvider.getDomesticCalculatorPage().isCityFromSelected("Київ");
-        pageProvider.getDomesticCalculatorPage().isCityToSelected("Чернігів");
+        pageProvider.getDomesticCalculatorPage().checkIsCityFromSelected("Київ");
+        pageProvider.getDomesticCalculatorPage().checkIsCityToSelected("Чернігів");
     }
 }

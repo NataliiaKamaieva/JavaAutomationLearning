@@ -93,7 +93,6 @@ public class DomesticCalculatorPage extends ParentPage {
 
     @Step
     public DomesticCalculatorPage selectCityTo(String inputText, String optionText) {
-
         enterTextIntoInput(inputToWhere, inputText);
         clickOnElement(String.format(dropDownOptionLocator, optionText));
         return this;
@@ -154,33 +153,33 @@ public class DomesticCalculatorPage extends ParentPage {
     }
 
     @Step
-    public void isServiceUkrposhtaEkspresIsVisible() {
+    public void checkIsServiceUkrposhtaEkspresIsVisible() {
         isElementDisplayed(serviceUkrposhtaEkspres);
     }
 
     @Step
-    public void isServiceUkrposhtaStandartIsVisible() {
+    public void checkIsServiceUkrposhtaStandartIsVisible() {
         isElementDisplayed(serviceUkrposhtaStandart);
     }
 
     @Step
-    public void isServiceUkrposhtaDocsIsVisible() {
+    public void checkIsServiceUkrposhtaDocsIsVisible() {
         isElementDisplayed(serviceUkrposhtaDocs);
     }
 
     @Step
-    public void isServiceUkrposhtaStandartNotVisible() {
-        checkIsElementNotVisible(serviceUkrposhtaStandart, "Service Ukrposhta Standart");
+    public void checkIsServiceUkrposhtaStandartNotVisible() {
+        isElementNotVisible(serviceUkrposhtaStandart, "Service Ukrposhta Standart");
     }
 
     @Step
-    public void isServiceUkrposhtaEkspresNotVisible() {
-        checkIsElementNotVisible(serviceUkrposhtaEkspres, "Service Ukrposhta Ekspres");
+    public void checkIsServiceUkrposhtaEkspresNotVisible() {
+        isElementNotVisible(serviceUkrposhtaEkspres, "Service Ukrposhta Ekspres");
     }
 
     @Step
-    public void isServiceUkrposhtaDocsNotVisible() {
-        checkIsElementNotVisible(serviceUkrposhtaDocs, "Service Ukrposhta Docs");
+    public void checkIsServiceUkrposhtaDocsNotVisible() {
+        isElementNotVisible(serviceUkrposhtaDocs, "Service Ukrposhta Docs");
     }
 
     @Step
@@ -189,12 +188,12 @@ public class DomesticCalculatorPage extends ParentPage {
     }
 
     @Step
-    public void isCityFromSelected(String city) {
+    public void checkIsCityFromSelected(String city) {
         Assert.assertEquals("City is not selected or different", city, inputFromWhere.getAttribute("value"));
     }
 
     @Step
-    public void isCityToSelected(String city) {
+    public void checkIsCityToSelected(String city) {
         Assert.assertEquals("City is not selected or different", city, inputToWhere.getAttribute("value"));
     }
 }

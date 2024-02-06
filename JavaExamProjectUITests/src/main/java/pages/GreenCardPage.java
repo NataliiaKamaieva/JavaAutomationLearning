@@ -110,12 +110,12 @@ public class GreenCardPage extends ParentPage {
     }
 
     @Step
-    public GreenCardPage isButtonChangeParametersVisible() {
+    public GreenCardPage checkIsButtonChangeParametersVisible() {
         Assert.assertTrue("Button - Change Parameters is not visible", isElementDisplayed(buttonChangeParameters));
         return this;
     }
     @Step
-    public GreenCardPage isBuyButtonVisible() {
+    public GreenCardPage checkIsBuyButtonVisible() {
         Assert.assertTrue("Button - Buy is not visible", isElementDisplayed(buttonBuy));
         return this;
     }
